@@ -1,0 +1,23 @@
+services:
+  yuzu-room:
+    image: k4rian/yuzu-room:latest
+    container_name: yuzu-room
+    volumes:
+      - data:/home/yuzu
+      - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - yuzu-room.env
+    secrets:
+      - yuzuroom
+    ports:
+      - 24872:24872 # TCP/UDP
+    ulimits:
+      memlock: -1
+    restart: unless-stopped
+
+volumes:
+  data:
+
+secrets:
+  yuzuroom:
+    file: ./secret.txt
