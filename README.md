@@ -2,15 +2,15 @@
  <img alt="docker-yuzu-room logo" src="https://raw.githubusercontent.com/K4rian/docker-yuzu-room/assets/icons/logo-docker-yuzu-room.svg" width="25%" align="center">
 </p>
 
-A Docker image for the [yuzu](https://yuzu-emu.org/) multiplayer server based on the official [Alpine Linux](https://www.alpinelinux.org/) [image](https://hub.docker.com/_/alpine).<br>
-The server allows to play many [supported local wireless games](https://switcher.co/games/tag/local-wireless/) via netplay using the [yuzu](https://yuzu-emu.org/) emulator.
+A Docker image for the [yuzu][1] multiplayer server based on the official [Alpine Linux][2] [image][3].<br>
+The server allows you to play many [supported local wireless games][4] via netplay using the [yuzu][1] emulator.
 
 ---
 <div align="center">
 
-| Docker Tag | Version | Description | Release Date |
-| ---        | :---:   | ---         | :---:        |
-| [latest](https://github.com/K4rian/docker-yuzu-room/blob/main/Dockerfile) | 1.0 | Latest release | 2023-10-15 |
+Docker Tag  | Version | Description    | Release Date
+---         | ---     | ---            | ---
+[latest][5] | 1.0     | Latest release | 2023-10-15
 </div>
 <p align="center"><a href="#environment-variables">Environment variables</a> &bull; <a href="#password-protection">Password protection</a> &bull; <a href="#usage">Usage</a> &bull; <a href="#using-compose">Using Compose</a> &bull; <a href="#manual-build">Manual build</a> <!-- &bull; <a href="#see-also">See also</a> --> &bull; <a href="#license">License</a></p>
 
@@ -53,7 +53,7 @@ This method is __NOT__ recommended for production since all environment variable
 ## Usage
 __Example 1:__<br>
 Run a public server for `Super Smash Bros. Ultimate` on port `51267` with a maximum of `16 members`:<br>
-— *You need a valid __[yuzu Community Token](https://yuzu-emu.org/wiki/yuzu-web-service/)__ to make the server reachable via the public room browser*
+— *You need a valid __[yuzu Community Token][6]__ to make the server reachable via the public room browser.*
 ```bash
 docker run -d \
   --name yuzu-room \
@@ -92,7 +92,7 @@ docker run -d \
 ```
 
 ## Using Compose
-See [compose/README.md](compose/)
+See [compose/README.md][7]
 
 ## Manual build
 __Requirements__:<br>
@@ -120,4 +120,13 @@ docker build --no-cache -t k4rian/yuzu-room .
 --->
 
 ## License
-[MIT](LICENSE)
+[MIT][8]
+
+[1]: https://yuzu-emu.org/ "yuzu Project Website"
+[2]: https://www.alpinelinux.org/ "Alpine Linux Official Website"
+[3]: https://hub.docker.com/_/alpine "Alpine Linux Docker Image"
+[4]: https://switcher.co/games/tag/local-wireless/ "List of Switch Local Wireless Games"
+[5]: https://github.com/K4rian/docker-yuzu-room/blob/master/Dockerfile "Latest Dockerfile"
+[6]: https://yuzu-emu.org/wiki/yuzu-web-service/ "yuzu Web Service Page"
+[7]: https://github.com/K4rian/docker-yuzu-room/tree/master/compose "Compose Files"
+[8]: https://github.com/K4rian/docker-yuzu-room/blob/master/LICENSE
