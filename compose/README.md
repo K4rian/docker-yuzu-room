@@ -25,7 +25,8 @@ services:
     secrets:
       - yuzuroom
     ports:
-      - 24872:24872 # TCP/UDP
+      - 24872:24872/tcp
+      - 24872:24872/udp
     ulimits:
       memlock: -1
     restart: unless-stopped
