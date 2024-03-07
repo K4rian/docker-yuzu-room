@@ -8,9 +8,9 @@ The server allows you to play many [supported local wireless games][4] via netpl
 ---
 <div align="center">
 
-Docker Tag  | Version | Description    | Release Date
+Docker Tag  | Version | Description    | Platform
 ---         | ---     | ---            | ---
-[latest][5] | 1.0     | Latest release | 2023-10-15
+[latest][5] | 1.1     | Latest release | amd64, arm64
 </div>
 <p align="center"><a href="#environment-variables">Environment variables</a> &bull; <a href="#password-protection">Password protection</a> &bull; <a href="#usage">Usage</a> &bull; <a href="#using-compose">Using Compose</a> &bull; <a href="#manual-build">Manual build</a> <!-- &bull; <a href="#see-also">See also</a> --> &bull; <a href="#license">License</a></p>
 
@@ -110,7 +110,7 @@ git clone https://github.com/K4rian/docker-yuzu-room.git .
 ```bash
 docker build --no-cache -t k4rian/yuzu-room .
 ```
-> The building process can take up to 5 minutes depending on your hardware specs. <br>
+> The building process can take up to 10 minutes depending on your hardware specs. <br>
 > A quad-core CPU with at least 1 GB of RAM and 3 GB of disk space is recommended for the compilation.
 
 <!---
