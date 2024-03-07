@@ -14,6 +14,7 @@ RUN apk update \
         jq \
         libarchive-tools \
         libstdc++ \
+        linux-headers \
         ninja-build \
         openssl-dev \
         wget \
