@@ -42,24 +42,26 @@ if [ ! "x$s_password" = "x" ]; then
   add_optional_arg "--password" "\"${s_password}\""
 fi
 
-if [ ! "x$YUZU_ISPUBLIC" = "x" ] \
- && [ $YUZU_ISPUBLIC = 1 ]; then
-  if [ ! "x$YUZU_TOKEN" = "x" ]; then
-    add_optional_arg "--token" "\"$YUZU_TOKEN\""
-  fi
+# if [ ! "x$YUZU_ISPUBLIC" = "x" ] \
+#  && [ $YUZU_ISPUBLIC = 1 ]; then
+#   if [ ! "x$YUZU_TOKEN" = "x" ]; then
+#     add_optional_arg "--token" "\"$YUZU_TOKEN\""
+#   fi
 
-  if [ ! "x$YUZU_WEBAPIURL" = "x" ]; then
-    add_optional_arg "--web-api-url" "\"$YUZU_WEBAPIURL\""
-  fi
+#   if [ ! "x$YUZU_WEBAPIURL" = "x" ]; then
+#     add_optional_arg "--web-api-url" "\"$YUZU_WEBAPIURL\""
+#   fi
 
-  if [ ! "x$YUZU_ENABLEMODS" = "x" ] \
-   && [ $YUZU_ENABLEMODS = 1 ]; then
-    add_optional_arg "--enable-yuzu-mods"
-  fi
-fi
+#   if [ ! "x$YUZU_ENABLEMODS" = "x" ] \
+#    && [ $YUZU_ENABLEMODS = 1 ]; then
+#     add_optional_arg "--enable-yuzu-mods"
+#   fi
+# fi
 
+echo ""
 echo "░█░█░█░█░▀▀█░█░█░░░█▀▄░█▀▀░█▀▄░▀█▀░█▀▀░█▀█░▀█▀░█▀▀░█▀▄░░░█▀▄░█▀█░█▀█░█▄█"
 echo "░░█░░█░█░▄▀░░█░█░░░█░█░█▀▀░█░█░░█░░█░░░█▀█░░█░░█▀▀░█░█░░░█▀▄░█░█░█░█░█░█"
 echo "░░▀░░▀▀▀░▀▀▀░▀▀▀░░░▀▀░░▀▀▀░▀▀░░▀▀▀░▀▀▀░▀░▀░░▀░░▀▀▀░▀▀░░░░▀░▀░▀▀▀░▀▀▀░▀░▀"
+echo ""
 
 eval "$s_command"
