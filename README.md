@@ -61,7 +61,8 @@ Run a public server for `SSB. Ultimate` on port `51267` with a maximum of `16 me
 ```bash
 docker run -d \
   --name yuzu-room \
-  -p 51267:51267 \
+  -p 51267:51267/tcp \
+  -p 51267:51267/udp \
   -e YUZU_PORT=51267 \
   -e YUZU_ROOMNAME="USA East - SSB. Ultimate" \
   -e YUZU_ROOMDESC="Fight On!" \
@@ -77,7 +78,8 @@ Run a private password-protected server using default configuration:<br>
 ```bash
 docker run -d \
   --name yuzu-room \
-  -p 24872:24872 \
+  -p 24872:24872/tcp \
+  -p 24872:24872/udp \
   -v "$(pwd)"/secret.txt:/run/secrets/yuzuroom:ro \
   -i k4rian/yuzu-room:latest
 ```
@@ -87,7 +89,8 @@ Run a password-protected __testing__ server on port `5555`:<br>
 ```bash
 docker run -d \
   --name yuzu-room-test \
-  -p 5555:5555 \
+  -p 5555:5555/tcp \
+  -p 5555:5555/udp \
   -e YUZU_PORT=5555 \
   -e YUZU_PASSWORD="testing" \
   -i k4rian/yuzu-room:latest
