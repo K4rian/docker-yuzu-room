@@ -8,15 +8,15 @@ The server allows you to play many [supported local wireless games][4] via netpl
 ---
 <div align="center">
 
-Docker Tag  | Version | Description    | Platform
----         | ---     | ---            | ---
-[latest][5] | 1.1     | Latest release | amd64, arm64
+Docker Tag  | Version | Description                    | Platform
+---         | ---     | ---                            | ---
+[latest][5] | 1.2     | Latest release (Mainline 1734) | amd64, arm64
 </div>
 <p align="center"><a href="#environment-variables">Environment variables</a> &bull; <a href="#password-protection">Password protection</a> &bull; <a href="#usage">Usage</a> &bull; <a href="#using-compose">Using Compose</a> &bull; <a href="#manual-build">Manual build</a> <!-- &bull; <a href="#see-also">See also</a> --> &bull; <a href="#license">License</a></p>
 
 ---
 ## Environment variables
-A few environment variables can be tweaked when creating a container to define the server configuration:
+Some environment variables can be tweaked when creating a container to define the server configuration:
 
 <details>
 <summary>Click to expand</summary>
@@ -33,10 +33,12 @@ YUZU_LOGFILE      | yuzu-room.log               | File path to store the logs.
 YUZU_ROOMDESC     |                             | (Optional) Description of the room.
 YUZU_PREFGAMEID   | 0                           | (Optional) Preferred game title identifier. You can find the Title ID with the game list of yuzu (right-click on a game -> `Properties`).
 YUZU_PASSWORD     |                             | (Optional) Room password *(__NOT__ recommended, see the section below)*.
+<!--
 YUZU_ISPUBLIC     | 0                           | (Optional) Make the room public. Valid User Token and Web API URL are required.
 YUZU_TOKEN        |                             | (Optional) The yuzu Community user token to use for the room. Required to make the room public.
 YUZU_WEBAPIURL    | https://api.yuzu-emu.org    | (Optional) URL to the yuzu Web API. Required to make the room public.
 YUZU_ENABLEMODS   | 0                           | (Optional) Grant the yuzu Community Moderators the power to moderate the room.
+-->
 
 </details>
 
@@ -52,20 +54,20 @@ This method is __NOT__ recommended for production since all environment variable
 
 ## Usage
 __Example 1:__<br>
-Run a public server for `Super Smash Bros. Ultimate` on port `51267` with a maximum of `16 members`:<br>
+Run a public server for `SSB. Ultimate` on port `51267` with a maximum of `16 members`:<br>
+<!--
 — *You need a valid __[yuzu Community Token][6]__ to make the server reachable via the public room browser.*
+-->
 ```bash
 docker run -d \
   --name yuzu-room \
   -p 51267:51267 \
   -e YUZU_PORT=51267 \
-  -e YUZU_ROOMNAME="USA East - Super Smash Bros. Ultimate" \
+  -e YUZU_ROOMNAME="USA East - SSB. Ultimate" \
   -e YUZU_ROOMDESC="Fight On!" \
-  -e YUZU_PREFGAME="Super Smash Bros. Ultimate" \
+  -e YUZU_PREFGAME="SSB. Ultimate" \
   -e YUZU_PREFGAMEID="01006A800016E000" \
   -e YUZU_MAXMEMBERS=16 \
-  -e YUZU_ISPUBLIC=1 \
-  -e YUZU_TOKEN="<YUZU_USER_TOKEN>" \
   -i k4rian/yuzu-room:latest
 ```
 
@@ -122,11 +124,13 @@ docker build --no-cache -t k4rian/yuzu-room .
 ## License
 [MIT][8]
 
-[1]: https://yuzu-emu.org/ "yuzu Project Website"
+[1]: https://web.archive.org/web/20240304211628/https://yuzu-emu.org/ "yuzu Project Website (Archive/March 4, 2024)"
 [2]: https://www.alpinelinux.org/ "Alpine Linux Official Website"
 [3]: https://hub.docker.com/_/alpine "Alpine Linux Docker Image"
 [4]: https://switcher.co/games/tag/local-wireless/ "List of Switch Local Wireless Games"
 [5]: https://github.com/K4rian/docker-yuzu-room/blob/master/Dockerfile "Latest Dockerfile"
+<!--
 [6]: https://yuzu-emu.org/wiki/yuzu-web-service/ "yuzu Web Service Page"
+-->
 [7]: https://github.com/K4rian/docker-yuzu-room/tree/master/compose "Compose Files"
 [8]: https://github.com/K4rian/docker-yuzu-room/blob/master/LICENSE

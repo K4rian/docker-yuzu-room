@@ -54,7 +54,7 @@ secrets:
 ```bash
 docker compose -p yuzu-room up -d
 ```
-*__Note__*: the project is using a volume in order to store the server data that can be recovered if the container is removed and restarted.
+*__Note__*: The project is using a volume in order to store the server data that can be recovered if the container is removed and restarted.
 
 ## Expected result
 Check that the container is running properly:

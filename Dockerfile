@@ -21,14 +21,14 @@ RUN apk update \
         xz \
         yasm \
     && export PATH=$PATH:/bin:/usr/local/bin:/usr/bin:/sbin:/usr/lib/ninja-build/bin \
-    && mkdir -p /server/lib /tmp/yuzu/build \
+    && mkdir -p /server/lib /tmp/yuzu/build /tmp/yuzu/room /tmp/yuzu/mainline \
     && cd /tmp/yuzu \
-    && git clone --depth 1 "https://github.com/yuzu-emu/yuzu-multiplayer-dedicated.git" /tmp/yuzu/room \
-    && git clone --depth 1 -j4 --recursive --shallow-submodules "https://github.com/yuzu-emu/yuzu-mainline.git" /tmp/yuzu/mainline \
+    && wget -c "https://github.com/K4rian/docker-yuzu-room/releases/download/v0.1734/multiplayer-dedicated.tar.gz" -O multiplayer-dedicated.tar.xz \
+    && wget -c "https://github.com/K4rian/docker-yuzu-room/releases/download/v0.1734/mainline-1734.tar.gz" -O mainline.tar.xz \
+    && tar --strip-components=1 -xf multiplayer-dedicated.tar.xz -C /tmp/yuzu/room \
+    && tar --strip-components=1 -xf mainline.tar.xz -C /tmp/yuzu/mainline \
     && cd /tmp/yuzu/mainline \
-    && git config user.name "github-actions" \
-    && git config user.email "github-actions[bot]@users.noreply.github.com" \
-    && git am /tmp/yuzu/room/patches/*.patch \
+    && git apply /tmp/yuzu/room/patches/*.patch \
     && cd /tmp/yuzu/room/.ci \
     && bash deps.sh \
     && cd /tmp/yuzu/build \
@@ -77,10 +77,12 @@ ENV YUZU_LOGFILE "yuzu-room.log"
 ENV YUZU_ROOMDESC ""
 ENV YUZU_PREFGAMEID "0"
 ENV YUZU_PASSWORD ""
-ENV YUZU_ISPUBLIC 0
-ENV YUZU_TOKEN ""
-ENV YUZU_WEBAPIURL "https://api.yuzu-emu.org"
-ENV YUZU_ENABLEMODS 0
+# Legacy
+# Requires a custom API
+#ENV YUZU_ISPUBLIC 0
+#ENV YUZU_TOKEN ""
+#ENV YUZU_WEBAPIURL "https://api.yuzu-emu.org"
+#ENV YUZU_ENABLEMODS 0
 
 RUN apk update \
     && adduser --disabled-password $USERNAME \
