@@ -42,26 +42,45 @@ if [ ! "x$s_password" = "x" ]; then
   add_optional_arg "--password" "\"${s_password}\""
 fi
 
-# if [ ! "x$YUZU_ISPUBLIC" = "x" ] \
-#  && [ $YUZU_ISPUBLIC = 1 ]; then
-#   if [ ! "x$YUZU_TOKEN" = "x" ]; then
-#     add_optional_arg "--token" "\"$YUZU_TOKEN\""
-#   fi
+if [ ! "x$YUZU_ISPUBLIC" = "x" ] \
+  && [ $YUZU_ISPUBLIC = 1 ]; then
+  if [ ! "x$YUZU_TOKEN" = "x" ]; then
+    add_optional_arg "--token" "\"$YUZU_TOKEN\""
+  fi
 
-#   if [ ! "x$YUZU_WEBAPIURL" = "x" ]; then
-#     add_optional_arg "--web-api-url" "\"$YUZU_WEBAPIURL\""
-#   fi
+  if [ ! "x$YUZU_WEBAPIURL" = "x" ]; then
+    add_optional_arg "--web-api-url" "\"$YUZU_WEBAPIURL\""
+  fi
+fi
 
-#   if [ ! "x$YUZU_ENABLEMODS" = "x" ] \
-#    && [ $YUZU_ENABLEMODS = 1 ]; then
-#     add_optional_arg "--enable-yuzu-mods"
-#   fi
-# fi
+print_header() {
+  local pf="● %-19s %-25s\n"
 
-echo ""
-echo "░█░█░█░█░▀▀█░█░█░░░█▀▄░█▀▀░█▀▄░▀█▀░█▀▀░█▀█░▀█▀░█▀▀░█▀▄░░░█▀▄░█▀█░█▀█░█▄█"
-echo "░░█░░█░█░▄▀░░█░█░░░█░█░█▀▀░█░█░░█░░█░░░█▀█░░█░░█▀▀░█░█░░░█▀▄░█░█░█░█░█░█"
-echo "░░▀░░▀▀▀░▀▀▀░▀▀▀░░░▀▀░░▀▀▀░▀▀░░▀▀▀░▀▀▀░▀░▀░░▀░░▀▀▀░▀▀░░░░▀░▀░▀▀▀░▀▀▀░▀░▀"
-echo ""
+  [ ! "x$YUZU_ROOMDESC" = "x" ] && room_desc="${YUZU_ROOMDESC}" || room_desc="(unset)"
+  [ ! "x$s_password" = "x" ] && room_pass="Yes" || room_pass="No"
+  [ $YUZU_ISPUBLIC = 1 ] && room_public="Yes" || room_public="No"
+  [ ! "x$YUZU_PREFGAMEID" = "x" ] && room_pgid="${YUZU_PREFGAMEID}" || room_pgid="(unset)"
+  [ ! "x$YUZU_WEBAPIURL" = "x" ] && room_api="${YUZU_WEBAPIURL}" || room_api="(unset)"
 
+  printf "\n"
+  printf "░█░█░█░█░▀▀█░█░█░░░█▀▄░█▀▀░█▀▄░▀█▀░█▀▀░█▀█░▀█▀░█▀▀░█▀▄░░░█▀▄░█▀█░█▀█░█▄█\n"
+  printf "░░█░░█░█░▄▀░░█░█░░░█░█░█▀▀░█░█░░█░░█░░░█▀█░░█░░█▀▀░█░█░░░█▀▄░█░█░█░█░█░█\n"
+  printf "░░▀░░▀▀▀░▀▀▀░▀▀▀░░░▀▀░░▀▀▀░▀▀░░▀▀▀░▀▀▀░▀░▀░░▀░░▀▀▀░▀▀░░░░▀░▀░▀▀▀░▀▀▀░▀░▀\n"
+  printf "\n"
+  printf "$pf" "Host:" "${YUZU_BINDADDR}"
+  printf "$pf" "Port:" "${YUZU_PORT}"
+  printf "$pf" "Name:" "${YUZU_ROOMNAME}"
+  printf "$pf" "Description:" "${room_desc}"
+  printf "$pf" "Password:" "${room_pass}"
+  printf "$pf" "Public:" "${room_public}"
+  printf "$pf" "Preferred Game:" "${YUZU_PREFGAME}"
+  printf "$pf" "Preferred Game ID:" "${room_pgid}"
+  printf "$pf" "Maximum Members:" "${YUZU_MAXMEMBERS}"
+  printf "$pf" "Banlist File:" "${YUZU_BANLISTFILE}"
+  printf "$pf" "Log File:" "${YUZU_LOGFILE}"
+  printf "$pf" "Web API URL:" "${room_api}"
+  printf "\n"
+}
+
+print_header
 eval "$s_command"

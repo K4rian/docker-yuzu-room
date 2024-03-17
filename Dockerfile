@@ -77,12 +77,9 @@ ENV YUZU_LOGFILE "yuzu-room.log"
 ENV YUZU_ROOMDESC ""
 ENV YUZU_PREFGAMEID "0"
 ENV YUZU_PASSWORD ""
-# Legacy
-# Requires a custom API
-#ENV YUZU_ISPUBLIC 0
-#ENV YUZU_TOKEN ""
-#ENV YUZU_WEBAPIURL "https://api.yuzu-emu.org"
-#ENV YUZU_ENABLEMODS 0
+ENV YUZU_ISPUBLIC 0
+ENV YUZU_TOKEN ""
+ENV YUZU_WEBAPIURL ""
 
 RUN apk update \
     && adduser --disabled-password $USERNAME \
