@@ -123,7 +123,7 @@ docker build --no-cache -t k4rian/yuzu-room .
 --->
 
 ## License
-[MIT][7]
+[GPL-3.0][7]
 
 [1]: https://web.archive.org/web/20240304211628/https://yuzu-emu.org/ "yuzu Project Website (Archive/March 4, 2024)"
 [2]: https://www.alpinelinux.org/ "Alpine Linux Official Website"
