@@ -17,6 +17,7 @@ services:
   yuzu-room:
     image: k4rian/yuzu-room:latest
     container_name: yuzu-room
+    hostname: yuzu-room
     volumes:
       - data:/home/yuzu
       - /etc/localtime:/etc/localtime:ro
@@ -27,8 +28,6 @@ services:
     ports:
       - 24872:24872/tcp
       - 24872:24872/udp
-    ulimits:
-      memlock: -1
     restart: unless-stopped
 
 volumes:
@@ -38,15 +37,14 @@ secrets:
   yuzuroom:
     file: ./secret.txt
 ```
+* The environment file *[yuzu-room.env](yuzu-room.env)* holds the server environment variables.
 
-> The environment file *[yuzu-room.env](yuzu-room.env)* holds the server environment variables.
->
-> The server password is defined in the *[secret.txt](secret.txt)* file.   
-> — Compose will mount it to `/run/secrets/yuzuroom` within the container.
->
-> The secret name has to be `yuzuroom`.
->
-> To make the server public, the `secrets` definitions in the compose file have to be omitted.
+* The server password is defined in the *[secret.txt](secret.txt)* file.<br>
+Compose will mount it to `/run/secrets/yuzuroom` within the container.
+
+* The secret name must be `yuzuroom`.
+
+* To make the server public, omit the `secrets` definitions in the Compose file.
 
 ## Deployment
 ```bash

@@ -2,6 +2,7 @@ services:
   yuzu-room:
     image: k4rian/yuzu-room:latest
     container_name: yuzu-room
+    hostname: yuzu-room
     volumes:
       - data:/home/yuzu
       - /etc/localtime:/etc/localtime:ro
@@ -12,8 +13,6 @@ services:
     ports:
       - 24872:24872/tcp
       - 24872:24872/udp
-    ulimits:
-      memlock: -1
     restart: unless-stopped
 
 volumes:
