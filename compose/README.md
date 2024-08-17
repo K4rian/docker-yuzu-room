@@ -17,7 +17,7 @@ services:
   yuzu-room:
     image: k4rian/yuzu-room:latest
     container_name: yuzu-room
-    hostname: yuzu-room
+    hostname: yuzu
     volumes:
       - data:/home/yuzu
       - /etc/localtime:/etc/localtime:ro

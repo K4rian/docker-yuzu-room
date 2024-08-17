@@ -10,10 +10,12 @@ The server allows you to play many [supported local wireless games][4] via netpl
 
 Docker Tag  | Version | Platform     | Description
 ---         | ---     | ---          | ---
-[latest][5] | 1.4     | amd64, arm64 | Latest release (Mainline 1734)
-[1.4][5]    | 1.4     | amd64, arm64 | Latest release (Mainline 1734)
+[latest][9] | 1.4     | amd64, arm64 | Latest release (Mainline 1734)
+[1.4][9]    | 1.4     | amd64, arm64 | Latest release (Mainline 1734)
 [1.3][8]    | 1.3     | amd64        | v1.3 (Legacy) (Mainline 1734)
 </div>
+
+---
 <p align="center"><a href="#environment-variables">Environment variables</a> &bull; <a href="#password-protection">Password protection</a> &bull; <a href="#usage">Usage</a> &bull; <a href="#using-compose">Using Compose</a> &bull; <a href="#manual-build">Manual build</a> <!-- &bull; <a href="#see-also">See also</a> --> &bull; <a href="#license">License</a></p>
 
 ---
@@ -44,23 +46,22 @@ YUZU_WEBAPIURL   |                | (Optional) URL to the custom web API. Requir
 ## Password protection
 The server can be protected with a (clear, unencrypted) password by:
 
-— Bind mount a text file containing the password into the container.<br>
-The mountpoint path has to be `/run/secrets/yuzuroom`.<br>
+— Bind mounting a text file containing the password into the container.<br>
+The mount point path must be `/run/secrets/yuzuroom`.<br>
 This is the __recommended__ method. See the second example in the section below.
 
 — Using the `YUZU_PASSWORD` environment variable when creating the container.<br>
-This method is __NOT__ recommended for production since all environment variables are visible via `docker inspect` to any user that can use the `docker` command. 
+This method is __NOT__ recommended for production, as all environment variables are visible via `docker inspect` to any user that can use the `docker` command. 
 
 ## Usage
 __Example 1:__<br>
-Run a public server for `SSB. Ultimate` on port `51267` with a maximum of `16 members`:<br>
+Run a public server for `SSB. Ultimate` on default port `24872` with a maximum of `16 members`:<br>
 — *You need a valid __User Token__ to make the server reachable via the public room browser.*
 ```bash
 docker run -d \
   --name yuzu-room \
-  -p 51267:51267/tcp \
-  -p 51267:51267/udp \
-  -e YUZU_PORT=51267 \
+  -p 24872:24872/tcp \
+  -p 24872:24872/udp \
   -e YUZU_ROOMNAME="USA East - SSB. Ultimate" \
   -e YUZU_ROOMDESC="Fight On!" \
   -e YUZU_PREFGAME="SSB. Ultimate" \
@@ -73,13 +74,14 @@ docker run -d \
 ```
 
 __Example 2:__<br>
-Run a private password-protected server using default configuration:<br>
+Run a password-protected server with default settings on port `51267`:<br>
 — *In this example, the password is stored in the `secret.txt` file located in the current working directory.* 
 ```bash
 docker run -d \
   --name yuzu-room \
-  -p 24872:24872/tcp \
-  -p 24872:24872/udp \
+  -p 51267:51267/tcp \
+  -p 51267:51267/udp \
+  -e YUZU_PORT=51267 \
   -v "$(pwd)"/secret.txt:/run/secrets/yuzuroom:ro \
   -i k4rian/yuzu-room
 ```
@@ -135,3 +137,4 @@ docker build --no-cache -t k4rian/yuzu-room .
 [6]: https://github.com/K4rian/docker-yuzu-room/tree/master/compose "Compose Files"
 [7]: https://github.com/K4rian/docker-yuzu-room/blob/master/LICENSE
 [8]: https://github.com/K4rian/docker-yuzu-room/blob/66af94517c94fb2bc3ab634bf28ce6c36edf7f72/Dockerfile "Dockerfile v1.3"
+[9]: https://github.com/K4rian/docker-yuzu-room/blob/4d3ab040da88964ce8a63d0173370bd8fadbf55f/Dockerfile "Dockerfile v1.4"
