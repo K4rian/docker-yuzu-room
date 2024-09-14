@@ -6,23 +6,23 @@ WORKDIR /tmp/yuzu
 
 RUN apk update \
     && apk -U add --no-cache \
-        autoconf=2.72-r0 \
-        bash=5.2.26-r0 \
-        build-base=0.5-r3 \
-        binutils-gold=2.42-r0 \
-        ca-certificates=20240705-r0 \
-        cmake=3.29.3-r0 \
-        git=2.45.2-r0 \
-        glslang=1.3.261.1-r0 \
-        jq=1.7.1-r0 \
-        libarchive-tools=3.7.4-r0 \
-        libstdc++=13.2.1_git20240309-r0 \
-        linux-headers=6.6-r0 \
-        ninja-build=1.12.1-r0 \
-        openssl-dev=3.3.1-r3 \
-        wget=1.24.5-r0 \
-        xz=5.6.2-r0 \
-        yasm=1.3.0-r4 \
+        autoconf \
+        bash \
+        build-base \
+        binutils-gold \
+        ca-certificates \
+        cmake \
+        git \
+        glslang\
+        jq \
+        libarchive-tools\
+        libstdc++ \
+        linux-headers \
+        ninja-build \
+        openssl-dev \
+        wget \
+        xz \
+        yasm \
     && export PATH=$PATH:/bin:/usr/local/bin:/usr/bin:/sbin:/usr/lib/ninja-build/bin \
     && mkdir -p /server/lib /tmp/yuzu/build /tmp/yuzu/room /tmp/yuzu/mainline \
     && wget --show-progress -q -c -O "multiplayer-dedicated.tar.xz" "https://github.com/K4rian/docker-yuzu-room/releases/download/v0.1734/multiplayer-dedicated.tar.gz" \
